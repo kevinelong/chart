@@ -35,7 +35,6 @@ let context = filtered.map(f => {
         products : f 
     }
 });
-//f.map(s => `${s.id}(${z(s.value)})`)
 console.log(context.map(o => (o.subtotal / total).toFixed(2) + " " + z(o.subtotal) + " " + o.products.map(s=>`${s.id}(${z(s.value)})`).join(" ")).join("\n"));
 console.log(sales.length)
 
