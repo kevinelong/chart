@@ -1,0 +1,43 @@
+<style>
+    body{
+        background-color: rgb(64,64,64);
+    }
+    .plotted{
+        position: absolute;
+        left: 50vw;
+        top: 50vh;
+        background-color: black;
+        width: 1vw;
+        height: 1vh;
+        border: 2px solid black;
+        z-index: -1;
+    }
+</style>
+<body>
+    <div class="plotted"></div>
+    <center><h1>Rectangles?</h1></center>
+</body>
+<script>
+    const create = e => document.createElement(e);
+    const div = e => create("div").classList();
+    const bit = create()
+    //const data = {"3":4,"4":16,"5":26,"6":49,"7":67,"8":102,"9":111,"10":140,"11":104,"12":125,"13":91,"14":63,"15":53,"16":30,"17":13,"18":5};
+    for(let i=0; i<9999; i++){
+        const p = document.createElement("div");
+        p.classList.add("plotted");
+        
+        p.style.left = Math.floor(Math.random() * 100) + "vw";        
+        p.style.top = Math.floor(Math.random() * 100) + "vh";        
+        
+        p.style.width = Math.floor(Math.random() * 10) + "vw";        
+        p.style.height = Math.floor(Math.random() * 10) + "vh";
+
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+         
+        p.style.background = `rgb( ${r}, ${g}, ${b} )`
+
+        document.body.appendChild(p);
+    }
+</script>

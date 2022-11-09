@@ -1,0 +1,26 @@
+<body></body>
+<script>
+    const data = { "3": 4, "4": 11, "5": 38, "6": 50, "7": 71, "8": 105, "9": 126, "10": 122, "11": 111, "12": 90, "13": 106, "14": 80, "15": 42, "16": 28, "17": 10, "18": 5 };
+    let total = 0;
+    const sales = [];
+    for (k in data) {
+        let v = data[k];
+        let n = number(k);
+        let c = String.fromCharCode(65 + n - 3);
+        sales.push({ id: c, value: v });
+        total += v;
+    }
+    let columns = 5;
+    let thresholds = [];
+    sales = sales.sort((a, b) => a.value < b.value);
+    let f = 1
+    let last = 0;
+    while (f < sales.length) {
+        thresholds.push({ from: last, to: f });
+        swap = f;
+        f = f + last;
+        last = swap;
+    }
+    thresholds.forEach(t => console.log(t.from, t.to));
+
+</script>
