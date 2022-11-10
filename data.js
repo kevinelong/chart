@@ -8,7 +8,7 @@ for (k in data) {
     sales.push({ id: c, value: v });
     total += v;
 }
-let columns = 4;
+let columns = 5;
 let thresholds = [];
 sales.sort((a, b) => b.value - a.value);
 sales.forEach(s => console.log(s.id, s.value))
@@ -24,15 +24,21 @@ while (last <= maximum) {
     current += step;
 }
 thresholds.forEach(t => console.log("T", t.from, t.to));
-filtered = thresholds.map(t => sales.filter(s => s.value >= t.from && s.value < t.to))
+filtered = thresholds.map(t => {
+    return { 
+        sales : sales.filter(s => s.value >= t.from && s.value < t.to),
+        threshold: t
+    };
+});
 
 //output
 const targetLength = 3;
 const z = n => String(n).padStart(targetLength, '0');
 let context = filtered.map(f => {
     return {
-        subtotal : f.map(o => o.value).reduce((p, c) => p + c, 0),
-        products : f 
+        subtotal : f.sales.map(o => o.value).reduce((p, c) => p + c, 0),
+        products : f.sales,
+        threshold: f.threshold 
     }
 });
 console.log(context.map(o => (o.subtotal / total).toFixed(2) + " " + z(o.subtotal) + " " + o.products.map(s=>`${s.id}(${z(s.value)})`).join(" ")).join("\n"));
