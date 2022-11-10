@@ -94,7 +94,7 @@
         bar.classList.add("bar");
         bar.innerHTML = ((d.subtotal/total)*100).toFixed() + "%";
         bar.appendChild(perxelContainer(d.subtotal/total));
-        bar.innerHTML += `${d.threshold.from} &#8212; ${d.threshold.to}`;
+        bar.innerHTML += `${d.threshold.to} &#8212; `;//${d.threshold.from}`;
         d.products.forEach(p=>bar.appendChild(block(p)))
         bar.appendChild(subtotal(d.subtotal));
         return bar;
