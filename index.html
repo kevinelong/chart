@@ -65,8 +65,8 @@
 
     pre {
         position: absolute;
-        top:0;
-        right:0;
+        top: 0;
+        right: 0;
         height: 100vh;
         overflow-y: scroll;
     }
@@ -123,6 +123,6 @@
     }
 
     document.body.appendChild(chart(context));
-    document.body.innerHTML += `<select style="position:absolute;bottom:1vh;left:40vw;"><option>5 Columns</option></select>`;
+    document.body.innerHTML += `<select style="position:absolute;bottom:1vh;left:1vw;"><option>5 Columns</option></select>`;
     document.body.innerHTML += `<pre style="text-align:left;">${JSON.stringify(context, undefined, 4)}</pre>`;
 </script>
