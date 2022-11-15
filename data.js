@@ -43,7 +43,7 @@ let context = filtered.map(f => {
 });
 console.log(context.map(o => (o.subtotal / total).toFixed(2) + " " + z(o.subtotal) + " " + o.products.map(s=>`${s.id}(${z(s.value)})`).join(" ")).join("\n"));
 console.log(sales.length)
-
+console.log(JSON.stringify(context, undefined, 4))
 // FIBO
 // let f = 5;
 // let last = 1;

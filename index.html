@@ -1,6 +1,6 @@
 <script src="data.js"></script>
 <style>
-    body{
+    body {
         text-align: center;
         background: #999;
         display: flex;
@@ -8,34 +8,39 @@
         font-family: sans-serif;
         color: #666;
         font-weight: 100;
+        vertical-align: top;
     }
-    .chart{
-        margin:auto;
+
+    .chart {
+        margin: auto;
         display: flex;
         flex-direction: row-reverse;
     }
-    .bar{
+
+    .bar {
         display: flex;
         flex-direction: column-reverse;
         flex-flow: column-reverse;
         margin: 1vw;
     }
-    .block{
+
+    .block {
         display: flex;
         flex-direction: column-reverse;
         flex-flow: column-reverse;
-        width:10vh;
-        height:10vh;
+        width: 10vh;
+        height: 10vh;
         /* border: 1px solid black; */
         margin: 1vw;
-        background: rgba(255,255,255,0.66);
-        box-shadow: 1px 1px 3px 3px rgba(0,0,0,0.125);
+        background: rgba(255, 255, 255, 0.66);
+        box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.125);
     }
-    .perxel-container{
+
+    .perxel-container {
         display: flex;
         width: 50px;
         height: 40px;
-        background: rgba(0,0,0,0.125);
+        background: rgba(0, 0, 0, 0.125);
         /* border: 0.1px solid black; */
         margin: 1vw;
         flex-wrap: wrap;
@@ -46,56 +51,66 @@
         align-self: center;
         justify-self: center;
     }
-    .perxel{
+
+    .perxel {
         display: flex;
         width: 4px;
         height: 4px;
         /* border: 0.01px solid black; */
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         margin: 1px 1px 0 0;
         align-self: center;
         justify-self: center;
     }
+
+    pre {
+        position: absolute;
+        top:0;
+        right:0;
+        height: 100vh;
+        overflow-y: scroll;
+    }
 </style>
+
 <body></body>
 <script>
-    function perxel(){
+    function perxel() {
         const div = document.createElement("div");
         div.classList.add("perxel");
         return div;
     }
 
-    function perxelContainer(percent){
+    function perxelContainer(percent) {
         const div = document.createElement("div");
         const limit = Math.round(percent * 100);
-        for(let i=0;i<limit;i++){
-            div.appendChild(perxel());            
+        for (let i = 0; i < limit; i++) {
+            div.appendChild(perxel());
         }
         div.classList.add("perxel-container");
         return div;
     }
 
-    function subtotal(subtotal){
+    function subtotal(subtotal) {
         const div = document.createElement("div");
         div.classList.add("subtotal");
         div.innerHTML = subtotal;
         return div;
     }
 
-    function block(p){
+    function block(p) {
         const div = document.createElement("div");
         div.classList.add("block");
         div.innerHTML = `${p.id}(${p.value})`;
         return div;
     }
 
-    function bar(d){
+    function bar(d) {
         const bar = document.createElement("div");
         bar.classList.add("bar");
-        bar.innerHTML = ((d.subtotal/total)*100).toFixed() + "%";
-        bar.appendChild(perxelContainer(d.subtotal/total));
+        bar.innerHTML = ((d.subtotal / total) * 100).toFixed() + "%";
+        bar.appendChild(perxelContainer(d.subtotal / total));
         bar.innerHTML += `${d.threshold.to} &#8212; `;//${d.threshold.from}`;
-        d.products.forEach(p=>bar.appendChild(block(p)))
+        d.products.forEach(p => bar.appendChild(block(p)))
         bar.appendChild(subtotal(d.subtotal));
         return bar;
     }
@@ -109,4 +124,5 @@
 
     document.body.appendChild(chart(context));
     document.body.innerHTML += `<select style="position:absolute;bottom:1vh;left:40vw;"><option>5 Columns</option></select>`;
+    document.body.innerHTML += `<pre style="text-align:left;">${JSON.stringify(context, undefined, 4)}</pre>`;
 </script>
